@@ -32,6 +32,15 @@ func AddContact(name, phone, email string) error {
 
 	return nil
 }
+func FindContact(name string) (Contact, error) {
+	contactArr := LoadContacts()
+	idx, exists := contactExists(contactArr, name)
+	if exists {
+		return Contact{}, fmt.Errorf("contact with the name %s does not exists", name)
+	}
+
+	return contactArr[idx], nil
+}
 
 func contactExists(contactArr []Contact, name string) (int, bool) {
 	for i, contact := range contactArr {

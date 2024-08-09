@@ -19,6 +19,8 @@ func main() {
 		command.UpdateContactCmd(os.Args[2:])
 	case "delete":
 		command.DeleteContactCmd(os.Args[2:])
+	case "find":
+		command.FindContactCmd(os.Args[2:])
 	case "list":
 		command.ListContactCmd()
 	default:

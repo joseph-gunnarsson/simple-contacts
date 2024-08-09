@@ -32,7 +32,6 @@ func AddContactCmd(args []string) {
 	if err != nil {
 		log.Fatalf("Error adding contact: %v\n", err)
 	}
-
 	fmt.Println("Contact added successfully")
 }
 
@@ -55,6 +54,27 @@ func DeleteContactCmd(args []string) {
 	}
 
 	fmt.Println("Contact deleted successfully")
+}
+
+func FindContactCmd(args []string) {
+	findCmd := flag.NewFlagSet("delete", flag.ExitOnError)
+	name := findCmd.String("name", "", "Contact name")
+	err := findCmd.Parse(args)
+	if err != nil {
+		log.Fatalf("Error parsing flags: %v\n", err)
+	}
+
+	if *name == "" {
+		findCmd.Usage()
+		os.Exit(1)
+	}
+
+	contact, err := contacts.FindContact(*name)
+	if err != nil {
+		log.Fatalf("Error finding contact: %v\n", err)
+	}
+
+	fmt.Printf("Name: %s, Phone: %s, Email: %s\n", contact.Name, contact.PhoneNumber, contact.Email)
 }
 
 func UpdateContactCmd(args []string) {
