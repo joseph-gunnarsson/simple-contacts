@@ -57,7 +57,7 @@ func DeleteContactCmd(args []string) {
 }
 
 func FindContactCmd(args []string) {
-	findCmd := flag.NewFlagSet("delete", flag.ExitOnError)
+	findCmd := flag.NewFlagSet("din", flag.ExitOnError)
 	name := findCmd.String("name", "", "Contact name")
 	err := findCmd.Parse(args)
 	if err != nil {
